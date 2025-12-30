@@ -12,7 +12,6 @@ import appStyles from "../App/App.module.css";
 import { MetadataContext } from "../../MetadataContext";
 import config from "../../config";
 import {
-  IconBrandDiscord,
   IconBrandFacebookFilled,
   IconBrandGithub,
   IconBrandGoogleFilled,
@@ -355,17 +354,6 @@ export const TopBar = (props: {
               gap: "4px",
             }}
           >
-            <ActionIcon
-              component="a"
-              color="gray"
-              size="lg"
-              href="https://discord.gg/3rYj5HV"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="Discord"
-            >
-              <IconBrandDiscord />
-            </ActionIcon>
             <ActionIcon
               component="a"
               color="gray"
