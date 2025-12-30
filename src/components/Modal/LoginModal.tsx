@@ -9,10 +9,6 @@ import {
 } from "@mantine/core";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
-import {
-  IconBrandFacebookFilled,
-  IconBrandGoogleFilled,
-} from "@tabler/icons-react";
 import config from "../../config";
 
 export class LoginModal extends React.Component<{
@@ -44,16 +40,6 @@ export class LoginModal extends React.Component<{
   //   });
   // };
 
-  facebookSignIn = async () => {
-    const provider = new firebase.auth.FacebookAuthProvider();
-    await firebase.auth().signInWithPopup(provider);
-  };
-
-  googleSignIn = async () => {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    await firebase.auth().signInWithPopup(provider);
-  };
-
   render() {
     const { closeModal } = this.props;
     const enabledOptions = config.VITE_FIREBASE_SIGNIN_METHODS.split(",");
@@ -69,28 +55,10 @@ export class LoginModal extends React.Component<{
         )}
         <Modal opened onClose={closeModal} title="Login" size="auto" centered>
           <div>
-            <div style={{ display: "flex", gap: "4px" }}>
-              {enabledOptions.includes("facebook") && (
-                <Button
-                  leftSection={<IconBrandFacebookFilled />}
-                  onClick={this.facebookSignIn}
-                >
-                  Facebook
-                </Button>
-              )}
-              {enabledOptions.includes("google") && (
-                <Button
-                  leftSection={<IconBrandGoogleFilled />}
-                  onClick={this.googleSignIn}
-                >
-                  Google
-                </Button>
-              )}
-            </div>
             {enabledOptions.includes("email") && (
               <>
                 <Divider
-                  label="Or sign in with email"
+                  label="Sign in with email"
                   labelPosition="center"
                   my="lg"
                 />
