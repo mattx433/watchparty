@@ -1,16 +1,9 @@
 import React from "react";
 import { Modal, Title, Table, Button } from "@mantine/core";
-import { loadStripe } from "@stripe/stripe-js";
 import { SignInButton } from "../TopBar/TopBar";
 import config from "../../config";
 import { MetadataContext } from "../../MetadataContext";
 import { IconBrandStripeFilled, IconCheck } from "@tabler/icons-react";
-
-// Make sure to call `loadStripe` outside of a component’s render to avoid
-// recreating the `Stripe` object on every render.
-const stripePromise = config.VITE_STRIPE_PUBLIC_KEY
-  ? loadStripe(config.VITE_STRIPE_PUBLIC_KEY as string)
-  : null;
 
 export class SubscribeModal extends React.Component<{
   closeSubscribe: () => void;
@@ -18,33 +11,7 @@ export class SubscribeModal extends React.Component<{
   static contextType = MetadataContext;
   declare context: React.ContextType<typeof MetadataContext>;
   onSubscribe = async () => {
-    if (!stripePromise) {
-      console.warn("Stripe integration is not configured, cannot subscribe");
-      return;
-    }
-    const stripe = await stripePromise;
-    const result = await stripe?.redirectToCheckout({
-      lineItems: [
-        {
-          price:
-            config.NODE_ENV === "development"
-              ? "price_HNGtabCzD5qyfd"
-              : "price_HNDBoPDI7yYRi9",
-          quantity: 1,
-        },
-      ],
-      mode: "subscription",
-      successUrl: window.location.href,
-      cancelUrl: window.location.href,
-      customerEmail: this.context.user?.email ?? undefined,
-      clientReferenceId: this.context.user?.uid,
-    });
-    // If `redirectToCheckout` fails due to a browser or network
-    // error, display the localized error message to your customer
-    // using `error.message`.
-    if (result && result.error) {
-      console.error(result.error.message);
-    }
+    alert("stub!");
   };
   render() {
     const { closeSubscribe } = this.props;
