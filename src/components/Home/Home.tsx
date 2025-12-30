@@ -118,7 +118,6 @@ export const Home = () => {
           </div> */}
         </div>
       </div>
-      <DiscordBot />
     </div>
   );
 };
@@ -193,29 +192,3 @@ export const Hero = ({
   );
 };
 
-export const DiscordBot = () => {
-  return (
-    <div>
-      <Hero
-        color="green"
-        heroText={
-          "Add the WatchParty Discord bot to your server to easily generate WatchParty links."
-        }
-        subText={"/watch to generate a new empty room"}
-        subText2={"/watch video <URL_HERE> to create a room with a video"}
-        action={
-          <Button
-            leftSection={<IconBrandDiscordFilled />}
-            component="a"
-            size="lg"
-            target="_blank"
-            href="https://discord.com/api/oauth2/authorize?client_id=1071394728513380372&permissions=2147485696&scope=bot"
-          >
-            Add to Discord
-          </Button>
-        }
-        image={"/screenshot5.png"}
-      />
-    </div>
-  );
-};
